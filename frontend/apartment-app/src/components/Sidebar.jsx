@@ -13,6 +13,11 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/apartments" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+            Apartments
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/residents" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
             Residents
           </NavLink>
@@ -20,6 +25,31 @@ const Sidebar = () => {
         <li>
           <NavLink to="/payments" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
             Payments
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/maintenance" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+            Maintenance
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/visitors" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+            Visitors
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/bookings" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+            Bookings
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/documents" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+            Documents
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/announcements" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+            Announcements
           </NavLink>
         </li>
       </ul>
