@@ -11,6 +11,8 @@ import Visitors from './pages/Visitors';
 import Bookings from './pages/Bookings';
 import Documents from './pages/Documents';
 import Announcements from './pages/Announcements';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="bookings" element={<Bookings />} />
           <Route path="documents" element={<Documents />} />
           <Route path="announcements" element={<Announcements />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
   );
