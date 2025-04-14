@@ -21,7 +21,7 @@ public class Announcement {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "author_id", referencedColumnName = "userId", nullable = false)
     private User author;
 
     // ✅ Default Constructor (Required by JPA)

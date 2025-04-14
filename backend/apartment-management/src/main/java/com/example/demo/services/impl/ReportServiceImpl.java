@@ -38,10 +38,10 @@ public class ReportServiceImpl implements ReportService {
         return maintenanceRequestRepository.getPendingRequestsGroupedByApartment();
     }
 
-    @Override
+    /*@Override
     public List<Object[]> getOccupancyReport() {
         return apartmentResidentRepository.getOccupancyReport();
-    }
+    }*/
 
     @Override
     public List<Object[]> countDocumentsByType() {

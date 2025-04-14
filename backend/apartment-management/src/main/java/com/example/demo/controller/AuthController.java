@@ -7,7 +7,9 @@ import com.example.demo.security.AuthenticationRequest;
 import com.example.demo.security.AuthenticationResponse;
 import com.example.demo.security.JwtUtil;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -54,6 +57,10 @@ public class AuthController {
     // 👤 REGISTER Endpoint
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
+    	try { 
+    		System.out.println("DEBUG >>> Incoming user object: " + user);
+    		log.info("Received User: {}", user);
+    	System.out.println("Received User: " + user);
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             return ResponseEntity.badRequest().body("User already exists with this email.");
         }
@@ -64,9 +71,14 @@ public class AuthController {
         // 👤 Set default role if not provided
         if (user.getRole() == null || user.getRole().toString().isEmpty()) {
         	user.setRole(Role.valueOf("RESIDENT"));
-        }
-
+    	}
+    	
         User savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
+    	}
+    	catch (Exception e) {
+            e.printStackTrace(); // Log the stack trace for debugging
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
     }
 }

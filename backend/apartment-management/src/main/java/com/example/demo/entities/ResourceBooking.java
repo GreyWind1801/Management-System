@@ -12,7 +12,7 @@ public class ResourceBooking {
     private Long bookingId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id",referencedColumnName = "userId", nullable = false)
     private User user;
 
     @Column(nullable = false, length = 100)

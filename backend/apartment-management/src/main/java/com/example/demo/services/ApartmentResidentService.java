@@ -11,7 +11,7 @@ public interface ApartmentResidentService {
     Optional<ApartmentResident> getResidentById(Long id);
     List<ApartmentResident> getResidentsByApartment(Long apartmentId);
     List<ApartmentResident> getResidentsByUser(Long userId);
-    /*String removeResident(Long id);*/
+    String removeResident(Long id);
 	void updateResidentRole(Long id, ResidentType newRole);
 	List<ApartmentResident> getCurrentResidentsByApartment(Long apartmentId);
 	List<ApartmentResident> getResidentHistoryByResidentId(Long residentId);

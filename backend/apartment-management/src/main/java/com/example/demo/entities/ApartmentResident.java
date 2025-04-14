@@ -11,6 +11,7 @@ public class ApartmentResident {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "resident_id")
     private Long residentId;
 
     @ManyToOne
@@ -18,7 +19,7 @@ public class ApartmentResident {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "apartment_id", referencedColumnName = "apartmentId")
+    @JoinColumn(name = "apartment_id", referencedColumnName = "apartment_Id")
     private Apartment apartment;
 
     @Enumerated(EnumType.STRING)
@@ -34,7 +35,7 @@ public class ApartmentResident {
     @Column(name = "is_current")
     private Boolean isCurrent;
 
-    @Column(nullable = false)
+    @Column(name = "joined_At", nullable = false)
     private LocalDateTime joinedAt = LocalDateTime.now();
 
     // Constructors

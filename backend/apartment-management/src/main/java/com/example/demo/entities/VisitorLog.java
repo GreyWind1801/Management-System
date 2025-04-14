@@ -15,7 +15,7 @@ public class VisitorLog {
     private String visitorName;
 
     @ManyToOne
-    @JoinColumn(name = "resident_id", nullable = false)
+    @JoinColumn(name = "resident_id", referencedColumnName = "resident_Id", nullable = false)
     private ApartmentResident resident;
 
     @Column(nullable = false)
@@ -25,7 +25,7 @@ public class VisitorLog {
     private LocalDateTime checkoutTime;
 
     @ManyToOne
-    @JoinColumn(name = "security_staff_id")
+    @JoinColumn(name = "security_staff_id", referencedColumnName = "userId")
     private User securityStaff;
 
     // Constructors

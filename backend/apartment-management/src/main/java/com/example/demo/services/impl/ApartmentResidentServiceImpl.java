@@ -53,7 +53,7 @@ public class ApartmentResidentServiceImpl implements ApartmentResidentService {
         });
     }
 
-    /*@Override
+    @Override
     public String removeResident(Long id) {
     	 Optional<ApartmentResident> optionalResident = residentRepository.findById(id);
          if (optionalResident.isPresent()) {
@@ -64,13 +64,13 @@ public class ApartmentResidentServiceImpl implements ApartmentResidentService {
          } else {
              return "Resident not found.";
          }
-	}*/
+	}
     
     @Override
     @Transactional
     public ApartmentResident assignResidentToApartment(ApartmentResident apartmentResident) {
         // End previous residents
-        residentRepository.deactivatePreviousResidents(apartmentResident.getApartment().getApartmentId(), LocalDate.now());
+       // residentRepository.deactivatePreviousResidents(apartmentResident.getApartment().getApartmentId(), LocalDate.now());
 
         // Set tracking fields
         apartmentResident.setStartDate(LocalDate.now());
@@ -82,7 +82,7 @@ public class ApartmentResidentServiceImpl implements ApartmentResidentService {
     
     @Override
     public List<ApartmentResident> getCurrentResidentsByApartment(Long apartmentId) {
-        return residentRepository.findByApartmentIdAndEndDateIsNull(apartmentId);
+        return residentRepository.findByApartment_ApartmentIdAndEndDateIsNull(apartmentId);
     }
 
     @Override

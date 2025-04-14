@@ -34,10 +34,10 @@ public class ReportController {
     }
 
     // 3. Occupancy Report - Count of Current Residents per Apartment
-    @GetMapping("/occupancy")
+    /*@GetMapping("/occupancy")
     public List<Object[]> getOccupancyReport() {
         return reportService.getOccupancyReport();
-    }
+    }*/
 
     // 4. Count of Documents grouped by Type
     @GetMapping("/documents/type-count")

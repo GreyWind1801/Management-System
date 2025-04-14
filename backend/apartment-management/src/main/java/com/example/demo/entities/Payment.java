@@ -12,11 +12,11 @@ public class Payment {
     private Long paymentId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id",referencedColumnName = "userId", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "apartment_id", nullable = false)
+    @JoinColumn(name = "apartment_id",referencedColumnName = "apartment_id", nullable = false)
     private Apartment apartment;
 
     @Column(nullable = false)

@@ -10,22 +10,23 @@ public class Apartment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "apartment_id")
     private Long apartmentId;
 
     @Column(nullable = false, length = 50)
     private String block;
 
-    @Column(nullable = false, length = 20, unique = true)
+    @Column(name = "flat_number", nullable = false, length = 20, unique = true)
     private String flatNumber;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @JoinColumn(name = "owner_id", referencedColumnName = "userId", nullable = false)
     private User owner;
     
-    @Column(nullable = false)
+    @Column(name = "rent_amount", nullable = false)
     private BigDecimal rentAmount;
 
-    @Column(nullable = false)
+    @Column(name = "billing_cycle", nullable = false)
     private String billingCycle; // Monthly, Yearly etc.
 
     // Constructors

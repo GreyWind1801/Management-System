@@ -40,8 +40,9 @@ public class SecurityConfig {
         return http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() // Allow login/register
-                .anyRequest().authenticated() // All others require auth
+                //.requestMatchers("/api/auth/**").permitAll() // Allow login/register
+                //.anyRequest().authenticated() // All others require auth
+            		.anyRequest().permitAll()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // JWT = Stateless
             .authenticationProvider(authenticationProvider())

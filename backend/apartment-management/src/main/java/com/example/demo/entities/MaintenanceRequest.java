@@ -12,11 +12,11 @@ public class MaintenanceRequest {
     private Long requestId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "apartment_id", nullable = false)
+    @JoinColumn(name = "apartment_id",referencedColumnName = "apartment_id", nullable = false)
     private Apartment apartment;
 
     @Column(nullable = false, length = 500)
@@ -26,7 +26,7 @@ public class MaintenanceRequest {
     private String status; // Open, In Progress, Resolved
 
     @ManyToOne
-    @JoinColumn(name = "assigned_staff")
+    @JoinColumn(name = "assigned_staff", referencedColumnName = "userId")
     private User assignedStaff;
 
     @Column(nullable = false)
