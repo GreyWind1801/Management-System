@@ -37,17 +37,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
             .authorizeHttpRequests(auth -> auth
-                //.requestMatchers("/api/auth/**").permitAll() // Allow login/register
-                //.anyRequest().authenticated() // All others require auth
-            		.anyRequest().permitAll()
+                .requestMatchers("/api/auth/**").permitAll() // Allow login/register
+                // Admin-only access
+                .requestMatchers("/apartments/**").hasRole("ADMIN")
+
+                // User + Admin access
+                .requestMatchers("/user/**").hasAnyRole("RESIDENT", "ADMIN")
+                .anyRequest().authenticated() // All others require auth
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // JWT = Stateless
             .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class) // Add JWT filter
-            .build();
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
+            
+            return http.build();
     }
 
     @Bean
