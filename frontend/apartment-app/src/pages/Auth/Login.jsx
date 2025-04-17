@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import authApi from '../../api/authApi';
 import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 // ✅ Validation schema
 const schema = yup.object().shape({
@@ -13,32 +14,37 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  const { setAuth } = useContext(AuthContext); // ✅ Access auth context
   const navigate = useNavigate();
+  const {register,handleSubmit,formState: { errors },} = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const [serverError, setServerError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { login } = useContext(AuthContext); // ✅ Access auth context
+  
 
   const onSubmit = async (data) => {
     setLoading(true);
     setServerError('');
 
     try {
-      const response = await authApi.login(data); // ✅ API call
+      const response = await authApi.login(data);// ✅ API call
+      console.log("Login response:", response.data); 
 
-      const { token, user } = response.data; // expected: { token, user }
+      const { token, email, role } = response.data; // expected: { token, email, role }
+
+      const user = { email, role };
+
       localStorage.setItem('token', token); // store token
-      setAuth({ user, token }); // set context
-      navigate('/dashboard'); // ✅ or your home route
+
+      login( token, user ); // set context
+
+      navigate('/'); // ✅ or your home route
+
     } catch (err) {
+      console.error("Login error:", err);
       setServerError(
         err?.response?.data?.message || 'Login failed. Please try again.'
       );
@@ -86,9 +92,7 @@ const Login = () => {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Don’t have an account?{' '}
-          <a href="/register" className="text-blue-600 hover:underline">
-            Register here
-          </a>
+          <Link to="/register" className="text-blue-600 hover:underline">Register here</Link>
         </p>
       </div>
     </div>
