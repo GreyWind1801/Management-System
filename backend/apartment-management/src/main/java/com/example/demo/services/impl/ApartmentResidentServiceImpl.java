@@ -2,12 +2,15 @@ package com.example.demo.services.impl;
 
 import com.example.demo.entities.ApartmentResident;
 import com.example.demo.entities.ResidentType;
+import com.example.demo.entities.User;
 import com.example.demo.repositories.ApartmentResidentRepository;
+import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.ApartmentResidentService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,9 +19,13 @@ import java.util.Optional;
 
 @Service
 public class ApartmentResidentServiceImpl implements ApartmentResidentService {
-
+	
+	@Autowired
     private final ApartmentResidentRepository residentRepository;
-
+	
+	@Autowired
+    private UserRepository userRepository;
+    
     public ApartmentResidentServiceImpl(ApartmentResidentRepository residentRepository) {
         this.residentRepository = residentRepository;
     }
@@ -27,6 +34,8 @@ public class ApartmentResidentServiceImpl implements ApartmentResidentService {
     public ApartmentResident addResident(ApartmentResident resident) {
     	resident.setStartDate(LocalDate.now());
         resident.setEndDate(null);  // active resident
+        resident.setIsCurrent(true);
+        
         return residentRepository.save(resident);
     }
 
@@ -96,6 +105,11 @@ public class ApartmentResidentServiceImpl implements ApartmentResidentService {
     }
     
     @Override
+    public List<ApartmentResident> getCurrentResidents() {
+        return residentRepository.findByIsCurrentTrue();
+    }
+    
+    @Override
     @Transactional
     public void removeResidentFromApartment(Long residentId) {
         Optional<ApartmentResident> optionalResident = residentRepository.findById(residentId);
@@ -108,6 +122,15 @@ public class ApartmentResidentServiceImpl implements ApartmentResidentService {
         } else {
             throw new EntityNotFoundException("Resident not found with ID: " + residentId);
         }
+    }
+    
+    @Override
+    public ApartmentResident getCurrentResidentByEmail(String email) {
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        if (userOpt.isPresent()) {
+            return residentRepository.findByUserAndIsCurrentTrue(userOpt.get()).orElse(null);
+        }
+        return null;
     }
 
 }

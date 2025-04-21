@@ -14,11 +14,11 @@ public class ApartmentResident {
     @Column(name = "resident_id")
     private Long residentId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_id", referencedColumnName = "apartment_Id")
     private Apartment apartment;
 
@@ -53,13 +53,13 @@ public class ApartmentResident {
     public void setResidentId(Long residentId) { this.residentId = residentId; }
 
     public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public void setUser(User user2) { this.user = user2; }
     
     public ResidentType getResidentType() {return residentType;}
     public void setResidentType(ResidentType residentType) {this.residentType = residentType;}
 
     public Apartment getApartment() { return apartment; }
-    public void setApartment(Apartment apartment) { this.apartment = apartment; }
+    public void setApartment(Apartment apartment2) { this.apartment = apartment2; }
     
     public LocalDate getStartDate() { return startDate;}
     public void setStartDate(LocalDate startDate) {this.startDate = startDate;}

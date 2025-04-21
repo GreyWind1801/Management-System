@@ -18,4 +18,6 @@ public interface ApartmentResidentService {
 	List<ApartmentResident> getResidentHistoryByApartmentId(Long apartmentId);
 	ApartmentResident assignResidentToApartment(ApartmentResident apartmentResident);
 	void removeResidentFromApartment(Long residentId);
+	List<ApartmentResident> getCurrentResidents();
+	ApartmentResident getCurrentResidentByEmail(String email);
 }

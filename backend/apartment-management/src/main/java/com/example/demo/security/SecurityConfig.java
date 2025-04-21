@@ -38,14 +38,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
+        	.cors(cors -> {})
+        	.csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll() // Allow login/register
                 // Admin-only access
-                .requestMatchers("/apartments/**").hasRole("ADMIN")
+                .requestMatchers("api/apartments/**").hasRole("ADMIN")
 
                 // User + Admin access
-                .requestMatchers("/user/**").hasAnyRole("RESIDENT", "ADMIN")
+                .requestMatchers("api/user/**").hasAnyRole("RESIDENT", "ADMIN")
                 .anyRequest().authenticated() // All others require auth
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // JWT = Stateless

@@ -1,6 +1,7 @@
 package com.example.demo.repositories;
 
 import com.example.demo.entities.ApartmentResident;
+import com.example.demo.entities.User;
 
 import jakarta.transaction.Transactional;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ApartmentResidentRepository extends JpaRepository<ApartmentResident, Long> {
@@ -31,6 +33,10 @@ public interface ApartmentResidentRepository extends JpaRepository<ApartmentResi
 	 ApartmentResident findCurrentResidentByApartmentApartmentId(@Param("apartmentId") Long apartmentId);
 	 
 	 List<ApartmentResident> findByApartment_ApartmentIdAndIsCurrentTrue(Long apartmentId);
+	 
+	 List<ApartmentResident> findByIsCurrentTrue();
+	 
+	 Optional<ApartmentResident> findByUserAndIsCurrentTrue(User user);
 	 
 	 @Modifying
 	 @Transactional

@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/maintenance")
+@RequestMapping("/api/maintenance")
 public class MaintenanceRequestController {
 
     @Autowired

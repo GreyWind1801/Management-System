@@ -90,4 +90,10 @@ public class JwtUtil {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+    
+    // 9. Extract Email
+    public String extractEmail(String token) {
+        return extractUsername(token); // email is stored as subject
+    }
+
 }

@@ -20,7 +20,7 @@ public class Apartment {
     private String flatNumber;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", referencedColumnName = "userId", nullable = false)
+    @JoinColumn(name = "owner_id", referencedColumnName = "userId")
     private User owner;
     
     @Column(name = "rent_amount", nullable = false)
