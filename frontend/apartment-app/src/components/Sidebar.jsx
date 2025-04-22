@@ -33,7 +33,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/visitors" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
+          <NavLink to="/visitors-log" className={({ isActive }) => `${linkClasses} ${isActive ? 'bg-blue-200 font-bold' : ''}`}>
             Visitors
           </NavLink>
         </li>

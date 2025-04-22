@@ -13,10 +13,16 @@ public class VisitorLog {
 
     @Column(nullable = false, length = 100)
     private String visitorName;
+    
+    @Column(nullable = false, length = 300)
+    private String purpose;
+    
+    @Column(nullable = false, length = 10)
+    private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "resident_id", referencedColumnName = "resident_Id", nullable = false)
-    private ApartmentResident resident;
+    @JoinColumn(name = "apartment_id", referencedColumnName = "apartment_Id", nullable = false)
+    private Apartment visitApartment;
 
     @Column(nullable = false)
     private LocalDateTime checkinTime = LocalDateTime.now();
@@ -31,9 +37,9 @@ public class VisitorLog {
     // Constructors
     public VisitorLog() {}
 
-    public VisitorLog(String visitorName, ApartmentResident resident, User securityStaff) {
+    public VisitorLog(String visitorName, Apartment visitApartment, User securityStaff) {
         this.visitorName = visitorName;
-        this.resident = resident;
+        this.visitApartment = visitApartment;
         this.securityStaff = securityStaff;
         this.checkinTime = LocalDateTime.now();
     }
@@ -45,10 +51,16 @@ public class VisitorLog {
     public String getVisitorName() { return visitorName; }
     public void setVisitorName(String visitorName) { this.visitorName = visitorName; }
 
-    public ApartmentResident getResident() { return resident; }
-    public void setResident(ApartmentResident resident) { this.resident = resident; }
+    public String getPurpose() {return purpose;}
+    public void setPurpose(String purpose) {this.purpose = purpose;}
 
-    public LocalDateTime getCheckinTime() { return checkinTime; }
+	public String getPhone() {return phone;}
+	public void setPhone(String phone) {this.phone = phone;}
+
+	public Apartment getVisitApartment() {return visitApartment;}
+	public void setVisitApartment(Apartment visitApartment) {this.visitApartment = visitApartment;}
+
+	public LocalDateTime getCheckinTime() { return checkinTime; }
 
     public LocalDateTime getCheckoutTime() { return checkoutTime; }
     public void setCheckoutTime(LocalDateTime checkoutTime) { this.checkoutTime = checkoutTime; }

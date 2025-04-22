@@ -32,7 +32,7 @@ const Announcements = () => {
           <div key={announcement.id} className="bg-white p-4 rounded shadow">
             <h3 className="text-lg font-semibold">{announcement.title}</h3>
             <p className="text-gray-600 text-sm mb-2">{new Date(announcement.createdAt).toLocaleString()}</p>
-            <p>{announcement.content}</p>
+            <p>{announcement.message}</p>
           </div>
         ))}
       </div>

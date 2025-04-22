@@ -11,4 +11,5 @@ public interface ResourceBookingService {
     String getStatus(Long bookingId);
     ResourceBooking updateBookingStatus(Long id, String status);
     void deleteBooking(Long bookingId);
+    Optional<List<ResourceBooking>> getUserBookings(Long userId);
 }

@@ -38,7 +38,7 @@ public class MaintenanceRequestController {
         return ResponseEntity.ok(status);
     }
 
-    @PutMapping("/{id}/status")
+    @PutMapping("/{id}")
     public ResponseEntity<String> updateRequestStatus(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
         String newStatus = requestBody.get("status");
 
@@ -48,6 +48,12 @@ public class MaintenanceRequestController {
 
         maintenanceRequestService.updateRequestStatus(id, newStatus);
         return ResponseEntity.ok("Status updated successfully");
+    }
+    
+    @GetMapping("/my-request/{id}")
+    public ResponseEntity<List<MaintenanceRequest>> getRequestsByUser(@PathVariable Long id) {
+        List<MaintenanceRequest> requests = maintenanceRequestService.getRequestsByUserId(id);
+        return ResponseEntity.ok(requests);
     }
 
     

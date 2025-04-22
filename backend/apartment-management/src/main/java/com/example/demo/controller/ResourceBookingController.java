@@ -25,6 +25,12 @@ public class ResourceBookingController {
     public ResponseEntity<Optional<ResourceBooking>> getBookingById(@PathVariable Long id) {
         return ResponseEntity.ok(resourceBookingService.getBookingById(id));
     }
+    
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Optional<List<ResourceBooking>>> getUserBookings(@PathVariable Long id) {
+        return ResponseEntity.ok(resourceBookingService.getUserBookings(id));
+    }
+    
 
     @GetMapping
     public ResponseEntity<List<ResourceBooking>> getAllBookings() {

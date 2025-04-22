@@ -46,4 +46,9 @@ public class MaintenanceRequestServiceImpl implements MaintenanceRequestService 
         request.setStatus(status);  // Update the status
         requestRepository.save(request); // Save the updated entity
     }
+    
+    @Override
+    public List<MaintenanceRequest> getRequestsByUserId(Long userId) {
+        return requestRepository.findByUserUserId(userId);
+    }
 }

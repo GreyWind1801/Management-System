@@ -32,6 +32,11 @@ public class ResourceBookingServiceImpl implements ResourceBookingService {
     }
     
     @Override
+    public Optional<List<ResourceBooking>> getUserBookings(Long userId) {
+    	return Optional.ofNullable(bookingRepository.findByUserUserId(userId));
+	} 
+    
+    @Override
     public String getStatus(Long bookingId) {
         return bookingRepository.findById(bookingId)
             .map(ResourceBooking::getStatus)  // Retrieve the status field

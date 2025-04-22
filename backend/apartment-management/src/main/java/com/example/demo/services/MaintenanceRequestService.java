@@ -10,4 +10,5 @@ public interface MaintenanceRequestService {
     List<MaintenanceRequest> getAllRequests();
     String getStatus(Long id);
     void updateRequestStatus(Long id, String status);
+    List<MaintenanceRequest> getRequestsByUserId(Long userId);
 }

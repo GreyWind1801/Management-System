@@ -18,5 +18,6 @@ public interface MaintenanceRequestRepository extends JpaRepository<MaintenanceR
     	       "WHERE m.status = 'PENDING' " +
     	       "GROUP BY m.apartment.apartmentId")
     	List<Object[]> getPendingRequestsGroupedByApartment();
-
+    	
+    	List<MaintenanceRequest> findByUserUserId(Long userId);
 }
