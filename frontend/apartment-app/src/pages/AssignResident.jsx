@@ -40,7 +40,7 @@ const AssignResident = () => {
 
       const assignPayload = {
         user: { userId: userId },
-        apartmentId: { apartmentId: formData.apartmentId},
+        apartment: { apartmentId: formData.apartmentId},
         residentType: formData.residentType,
         startDate: formData.startDate,
       };

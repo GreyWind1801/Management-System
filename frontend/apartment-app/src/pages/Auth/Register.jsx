@@ -40,33 +40,87 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow-md mt-8">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Register</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
-        <input type="text" placeholder="Full Name" {...register('name')} className="input" />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-
-        <input type="text" placeholder="Phone Number" {...register('phone')} className="input" />
-        {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
-
-        <input type="email" placeholder="Email" {...register('email')} className="input" />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-
-        <input type="password" placeholder="Password" {...register('password')} className="input" />
-        {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-
-        <input type="password" placeholder="Confirm Password" {...register('confirmPassword')} className="input" />
-        {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
-
-        <button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
-          {loading ? 'Registering...' : 'Register'}
-        </button>
-
-        {serverError && <p className="text-red-600 mt-2 text-center">{serverError}</p>}
-      </form>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Create an Account</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+  
+          {/* Full Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <input
+              type="text"
+              {...register('name')}
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="John Doe"
+            />
+            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>}
+          </div>
+  
+          {/* Phone */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <input
+              type="text"
+              {...register('phone')}
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="9876543210"
+            />
+            {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone.message}</p>}
+          </div>
+  
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input
+              type="email"
+              {...register('email')}
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="you@example.com"
+            />
+            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>}
+          </div>
+  
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input
+              type="password"
+              {...register('password')}
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="********"
+            />
+            {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>}
+          </div>
+  
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+            <input
+              type="password"
+              {...register('confirmPassword')}
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="********"
+            />
+            {errors.confirmPassword && <p className="text-sm text-red-500 mt-1">{errors.confirmPassword.message}</p>}
+          </div>
+  
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+          >
+            {loading ? 'Registering...' : 'Register'}
+          </button>
+  
+          {/* Server Error */}
+          {serverError && <p className="text-center text-red-600 mt-3">{serverError}</p>}
+        </form>
+      </div>
     </div>
   );
+  
 };
 
 export default Register;
